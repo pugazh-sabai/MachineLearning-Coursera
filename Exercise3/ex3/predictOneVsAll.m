@@ -30,14 +30,19 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-g = zeros(num_labels,1); h = zeros(num_labels,1);
-for i=1:m
-    for j=1:num_labels
-        g(j) = X(i,:)*all_theta(j,:)';
-        h(j) = 1/(1 + exp(-g(j)));
-    end
-    [k, p(i)] = max(h);
-end
+% For loop implementation
+% g = zeros(num_labels,1); h = zeros(num_labels,1);
+% for i=1:m
+%     for j=1:num_labels
+%         g(j) = X(i,:)*all_theta(j,:)';
+%         h(j) = 1/(1 + exp(-g(j)));
+%     end
+%     [k, p(i)] = max(h);
+% end
+
+% Vectorized implementaion
+h = 1./(1 + exp(-X*all_theta'));
+[k, p] = max(h, [], 2);
 
 % =========================================================================
 
